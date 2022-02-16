@@ -1,5 +1,10 @@
+# 259 Homework - integrating skills
+# For full credit, answer at least 8/10 questions
+# List students working with below:
+
 library(tidyverse)
 library(lubridate)
+library(DataExplorer)
 
 #> These data are drawn from the fivethirtyeight article:
 #> http://fivethirtyeight.com/features/what-12-months-of-record-setting-temperatures-looks-like-across-the-u-s/
@@ -24,7 +29,8 @@ cities <- c("Charlotte", "Los Angeles", "Houston", "Indianapolis", "Jacksonville
             "Chicago", "New York City", "Philadelphia", "Phoenix", "Seattle")
 
 
-
+# QUESTION 1
+#> The data files are in the directory 'us-weather-history'
 #> Write a function that takes each station abbreviation and reads
 #> the data file and adds the station name in a column
 #> Make sure the date column is a date
@@ -34,39 +40,81 @@ cities <- c("Charlotte", "Los Angeles", "Houston", "Indianapolis", "Jacksonville
 
 
 
-
+# QUESTION 2
 #> Use map_dfr() and your new function to read in all 10 stations
 #> map_dfr() will take each dataframe and automatically bind them.
 #> Save the resulting dataset to "ds"
 
 
 
-
+# QUESTION 3
 #> Make a factor called "city" based on the station variable
 #> (station should be the level and city should be the label)
 #> Use fct_count to check that there are 365 days of data for each city 
 
 
-
+# QUESTION 4
 #> Since we're scientists, let's convert all the temperatures to C
 #> Write a function to convert F to C, and then use mutate across to 
 #> convert all of the temperatures, rounded to a tenth of a degree
 
 
 
+### CHECK YOUR WORK
+#> At this point, your data should look like the "compiled_data.csv" file
+#> in data-clean. If it isn't, read in that file to use for the remaining
+#> questions so that you have the right data to work with.
+
+# QUESTION 5
 #> Write a function that counts the number of extreme temperature days,
-#> Where the actual min or max was equal to the (i.e., set the) record min/max
+#> where the actual min or max was equal to the (i.e., set the) record min/max
+#> A piped function starting with '.' is a good strategy here.
 #> Group the dataset by city to see how many extreme days each city experienced,
-#> and sort in descending order to show which city had the most
+#> and sort in descending order to show which city had the most:
+#> (Seattle, 20, Charlotte 12, Phoenix 12, etc...)
+#> Don't save this summary over the original dataset!
 
 
 
+# QUESTION 6
 #> Pull out the month from the date and make "month" a factor
 #> Split the tibble by month into a list of tibbles 
 
 
 
+# QUESTION 7
 #> For each month, determine the correlation between the actual_precipitation
 #> and the average_precipitation (across all cities), and between the actual and average mins/maxes
 #> Use a for loop, and print the month along with the resulting correlation
+#> Look at the documentation for the ?cor function if you've never used it before
+
+
+
+
+# QUESTION 8
+#> Use the Data Explorer package to plot boxplots of all of the numeric variables in the dataset
+#> grouped by city, then do the same thing grouped by month. 
+#> Finally, use plot_correlation to investigate correlations between the continuous variables only
+#> Check the documentation for plot_correlation for an easy way to do this
+
+
+
+
+# QUESTION 9
+#> Create a scatterplot of actual_mean_temp (y axis) by date (x axis)
+#> Use facet_wrap to make a separate plot for each city (3 columns)
+#> Make the points different colors according to month
+
+
+
+
+# QUESTION 10
+#> Write a function that takes the dataset and the abbreviate month as arguments
+#> and creates a scatter and line plot of actual temperature (y axis) by date (x axis)
+#> Note, just add geom_line() to your ggplot call to get the lines
+#> use the ggtitle() function to add the month as a title
+#> The function should save the plot as "eda/month_name.png"
+#> The eda folder has an example of what each plot should look like
+#> Call the function in a map or loop to generate graphs for each month
+
 

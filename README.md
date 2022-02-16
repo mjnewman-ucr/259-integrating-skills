@@ -1,7 +1,7 @@
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
-# 259-integrating-skills
-Exercise to put together all of the skills we've covered so far in class: importing and transforming data, manipulating strings, factors, and dates, writing functions, and using across, map, and for loops to automate operations.
+# 259-integrating-skills-hw
+Homework to put together all of the skills we've covered so far in class: importing and transforming data, manipulating strings, factors, and dates, writing functions, using across, map, and for loops to automate operations, and making graphs.
 
 The data are drawn from the fivethirtyeight article [What 12 Months Of Record-Setting Temperatures Looks Like Across The U.S.](http://fivethirtyeight.com/features/what-12-months-of-record-setting-temperatures-looks-like-across-the-u-s/). The data are drawn from 10 different weather stations, each in a different US city.
 
