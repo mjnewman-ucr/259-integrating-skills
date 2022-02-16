@@ -1,6 +1,7 @@
 # 259 Homework - integrating skills
 # For full credit, answer at least 8/10 questions
 # List students working with below:
+# Just myself. :)
 
 library(tidyverse)
 library(lubridate)
@@ -37,6 +38,13 @@ cities <- c("Charlotte", "Los Angeles", "Houston", "Indianapolis", "Jacksonville
 #> The function should return a tibble
 #> Call the function "read_weather" 
 #> Check by reading/glimpsing a single station's file
+
+# Answer:
+function(s) {
+  station_name <- list.files(path="us-weather-history", full.names = T)
+}
+
+station_name <- list.files(path="us-weather-history", full.names = T)
 
 
 
