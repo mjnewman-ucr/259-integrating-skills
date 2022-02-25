@@ -40,11 +40,20 @@ cities <- c("Charlotte", "Los Angeles", "Houston", "Indianapolis", "Jacksonville
 #> Check by reading/glimpsing a single station's file
 
 # Answer:
-function(s) {
-  station_name <- list.files(path="us-weather-history", full.names = T)
-}
 
-station_name <- list.files(path="us-weather-history", full.names = T)
+ds <- read_csv(list.files('us-weather-history'))
+
+station_name <- list.files('us-weather-history', pattern = ".csv")
+
+station_name <- str_remove_all(station_name, ".csv")
+
+station <- mutate(station_name, station = station_name)
+
+station_function <- function(s)
+
+
+(station_function(station_name))
+
 
 
 
