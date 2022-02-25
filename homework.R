@@ -41,18 +41,25 @@ cities <- c("Charlotte", "Los Angeles", "Houston", "Indianapolis", "Jacksonville
 
 # Answer:
 
-ds <- read_csv(list.files('us-weather-history'))
-
-station_name <- list.files('us-weather-history', pattern = ".csv")
-
-station_name <- str_remove_all(station_name, ".csv")
-
-station <- mutate(station_name, station = station_name)
-
-station_function <- function(s)
+#> okay so before i even worry about the function I need to figure out how I would
+#> even do this without making it a function. 
+#> 
+#> First I would need to read in the data file and make a column full of it's station name
 
 
-(station_function(station_name))
+##OLD STUFF
+
+#ds <- read_csv(list.files('us-weather-history'))
+
+#station_name <- list.files('us-weather-history', pattern = ".csv")
+
+#station_name <- str_remove_all(station_name, ".csv")
+
+#station <- mutate(station_name, station = station_name)
+
+#station_function <- function(s)
+
+#(station_function(station_name))
 
 
 
