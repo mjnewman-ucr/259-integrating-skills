@@ -46,6 +46,13 @@ cities <- c("Charlotte", "Los Angeles", "Houston", "Indianapolis", "Jacksonville
 #> 
 #> First I would need to read in the data file and make a column full of it's station name
 
+library(readr)
+
+ds <- read_delim(list.files(path = "us-weather-history", all.files = F, 
+                            pattern = ".csv", full.names = T), id = "filename")
+#clean up the station name
+ds %>% mutate(id = )
+
 
 ##OLD STUFF
 
