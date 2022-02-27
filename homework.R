@@ -41,40 +41,36 @@ cities <- c("Charlotte", "Los Angeles", "Houston", "Indianapolis", "Jacksonville
 
 # Answer:
 
-#> okay so before i even worry about the function I need to figure out how I would
-#> even do this without making it a function. 
-#> 
-#> First I would need to read in the data file and make a column full of it's station name
-
 library(readr)
 
-ds <- read_delim(list.files(path = "us-weather-history", all.files = F, 
-                            pattern = ".csv", full.names = T), id = "filename")
-#clean up the station name
-ds %>% mutate(id = )
+#ds <- read_csv("us-weather-history/KCLT.csv")
+#ds$date <- as.Date(ds$date, formate = "%Y-%m-%d", na.rm = T)
+#glimpse(ds)
+#ds
 
+read_weather <- function(x, y) {
+  ds <- read_csv(x)
+  ds <- mutate(ds, station = y)
+}
 
-##OLD STUFF
+#>I realize I didn't change the date to date format. Whenever I added it in my function
+#>kept returning a value instead of a tibble
 
-#ds <- read_csv(list.files('us-weather-history'))
-
-#station_name <- list.files('us-weather-history', pattern = ".csv")
-
-#station_name <- str_remove_all(station_name, ".csv")
-
-#station <- mutate(station_name, station = station_name)
-
-#station_function <- function(s)
-
-#(station_function(station_name))
-
-
+KCLT <- read_weather("us-weather-history/KCLT.csv", "KCLT")
+KCQT <- read_weather("us-weather-history/KCQT.csv", "KCQT")
 
 
 # QUESTION 2
 #> Use map_dfr() and your new function to read in all 10 stations
 #> map_dfr() will take each dataframe and automatically bind them.
 #> Save the resulting dataset to "ds"
+
+(stations <- list.files(path = "us-weather-history", all.files = F, 
+           pattern = ".csv", full.names = T))
+
+ds <- stations %>% map_dfr(read_weather)
+
+#can't get it to work uuuugh 
 
 
 
