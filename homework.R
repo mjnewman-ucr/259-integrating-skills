@@ -60,6 +60,8 @@ KCLT <- read_weather("us-weather-history/KCLT.csv", "KCLT")
 KCQT <- read_weather("us-weather-history/KCQT.csv", "KCQT")
 
 
+paste0("us-weather-history/",stations[1],".csv")
+
 # QUESTION 2
 #> Use map_dfr() and your new function to read in all 10 stations
 #> map_dfr() will take each dataframe and automatically bind them.
@@ -68,12 +70,14 @@ KCQT <- read_weather("us-weather-history/KCQT.csv", "KCQT")
 (stations <- list.files(path = "us-weather-history", all.files = F, 
            pattern = ".csv", full.names = T))
 
-ds <- stations %>% map_dfr(read_weather)
+ds <- stations %>% map_dfr(~ read_weather(paste0("us-weather-history/",.,".csv"),.))
 
-#can't get it to work uuuugh... I asked Serena and she provided me with her function, but it didn't help
+ds <- map_dfr(stations, ~ read_weather(paste0("us-weather-history/",.,".csv"),.))
+
+#Jacon helped me out to fix it
 
 
-ds <- map_dfr(stations,read_weather)
+#ds <- map_dfr(stations, read_weather)
 
 #at some point this was kinda working, but the station column just read as "y" for every row.
 #But now I can't even get ds, which makes my below answers not work
