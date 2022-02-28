@@ -1,7 +1,7 @@
 # 259 Homework - integrating skills
 # For full credit, answer at least 8/10 questions
 # List students working with below:
-# Just myself. :)
+# Serena, kinda :)
 
 library(tidyverse)
 library(lubridate)
@@ -53,7 +53,7 @@ read_weather <- function(x, y) {
   ds <- mutate(ds, station = y)
 }
 
-#>I realize I didn't change the date to date format. Whenever I added it in my function
+#>I know I didn't change the date to date format. Whenever I added it in my function
 #>kept returning a value instead of a tibble
 
 KCLT <- read_weather("us-weather-history/KCLT.csv", "KCLT")
@@ -70,8 +70,13 @@ KCQT <- read_weather("us-weather-history/KCQT.csv", "KCQT")
 
 ds <- stations %>% map_dfr(read_weather)
 
-#can't get it to work uuuugh 
+#can't get it to work uuuugh... I asked Serena and she provided me with her function, but it didn't help
 
+
+ds <- map_dfr(stations,read_weather)
+
+#at some point this was kinda working, but the station column just read as "y" for every row.
+#But now I can't even get ds, which makes my below answers not work
 
 
 # QUESTION 3
@@ -79,18 +84,29 @@ ds <- stations %>% map_dfr(read_weather)
 #> (station should be the level and city should be the label)
 #> Use fct_count to check that there are 365 days of data for each city 
 
+ds$city <- factor(ds$station, levels = stations, labels = cities)
+#had to rerun to "stations" code at the beginning, to replace mine
+fct_count(ds$city)
 
 # QUESTION 4
 #> Since we're scientists, let's convert all the temperatures to C
 #> Write a function to convert F to C, and then use mutate across to 
 #> convert all of the temperatures, rounded to a tenth of a degree
 
+ftoc <- function(f){
+  celsius <- (f - 32)*(5/9)
+}
 
+temp_columns <- c("actual_mean_temp","actual_min_temp","actual_max_temp","average_min_temp","average_max_temp","record_min_temp","record_max_temp")
+#Tried to do this as a list. Couldn't figure it out
+ds <- ds %>% mutate(across(.cols = temp_columns,~ftoc(.x)))
+ds <- ds %>% mutate(across(.cols = temp_columns,~round(.x,digits=1)))
 
 ### CHECK YOUR WORK
 #> At this point, your data should look like the "compiled_data.csv" file
 #> in data-clean. If it isn't, read in that file to use for the remaining
 #> questions so that you have the right data to work with.
+ds <- read_csv("data-clean/compiled_data.csv")
 
 # QUESTION 5
 #> Write a function that counts the number of extreme temperature days,
@@ -107,14 +123,16 @@ ds <- stations %>% map_dfr(read_weather)
 #> Pull out the month from the date and make "month" a factor
 #> Split the tibble by month into a list of tibbles 
 
-
+ds$date <- as.Date (ds$date, format = "%Y-%m-%d")
+ds$date <- format(ds$date, "%m")
+as.factor(ds$date)
+splitds <- split(ds, ds$date)
 
 # QUESTION 7
 #> For each month, determine the correlation between the actual_precipitation
 #> and the average_precipitation (across all cities), and between the actual and average mins/maxes
 #> Use a for loop, and print the month along with the resulting correlation
 #> Look at the documentation for the ?cor function if you've never used it before
-
 
 
 
